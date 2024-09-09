@@ -1,7 +1,7 @@
 // require('dotenv').config
 // Load environment variables.
 import dotenv from "dotenv"
-
+import {app} from "./app.js"
 import connectDB from "./db/db.js";
 
 dotenv.config({
@@ -23,6 +23,8 @@ connectDB()
         console.log(`server is running at port: ${process.env.PORT}`);
      
     })
+
+    
 })
 
 
