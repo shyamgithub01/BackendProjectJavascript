@@ -16,3 +16,5 @@ console.log("file is uplaoded on teh cloudinary " , response.url);
         return null
     }
 }
+
+export default uplaodOnCloudinary
