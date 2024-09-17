@@ -106,6 +106,26 @@ export const loginUser = asyncHandler(async (req,res)=>{
       throw new ApiError(404,"password incorrect")
      }
 
+    const {accessToken , refreshToken} = await  generateAccessTokenAndRefreshToken(user._id)
+
+
+    const LoggedInUser = await User.findById(User._id)
+    select("-password -refreshtoken")
+
+    const options = {
+      httpOnly : true,
+      secure:true
+    }
+    return res.status(200).cookie("accessToken " , accessToken,options).cookie("refreshToken" , refreshToken , options)
+
+    .json(
+      new ApiResponse (
+        200,
+        {user:LoggedInUser , accessToken , refreshToken}
+      )
+    )
+
+
 
       
 
